@@ -17,6 +17,7 @@ public record Card(CardRank rank, CardSuit suit, boolean isAceHigh) implements C
         return Objects.hash(rank(), suit());
     }
 
+    @SuppressWarnings("preview")
     @Override
     public String toString() {
         return STR." \{rank().getValue()} of \{suit()}";
