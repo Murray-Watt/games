@@ -13,7 +13,7 @@ class DeckTest {
 
     @Test
     void buildDeck() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
 
         assertNotNull(deck);
         assertTrue(deck.isAceHigh());
@@ -33,7 +33,7 @@ class DeckTest {
 
     @Test
     public void toJsonOnInitialDeck() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
         String deckJson;
 
         try {
@@ -50,7 +50,7 @@ class DeckTest {
 
     @Test
     public void drawHappyPath() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
         assertNotNull(deck);
 
         assertEquals(0, deck.getTopCardIndex());
@@ -63,7 +63,7 @@ class DeckTest {
 
     @Test
     public void drawEmptyDeck() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
         assertNotNull(deck);
 
         while (deck.getTopCardIndex() < deck.getCards().size()) {
@@ -75,7 +75,7 @@ class DeckTest {
 
     @Test
     public void drawMultipleCards() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
 
         List<Card> drawnCards = deck.draw(3);
         assertEquals(3, drawnCards.size());
@@ -85,7 +85,7 @@ class DeckTest {
 
     @Test
     public void shuffle() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
 
         deck.shuffle();
 
@@ -95,7 +95,7 @@ class DeckTest {
 
     @Test
     public void drawMoreCardsThanAvailable() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
 
         List<Card> drawnCards = deck.draw(54); // 52 cards in a standard deck
 
@@ -106,7 +106,7 @@ class DeckTest {
     // https://stattrek.com/online-calculator/binomial
     @Test
     public void shuffleChangesCards() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
 
         List<Card> topCardsBeforeShuffle = deck.getCards().subList(0, 9);
         deck.shuffle();
@@ -125,8 +125,8 @@ class DeckTest {
 
     @Test
     public void cut() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
-        var topCard = deck.getCards().get(0);
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        var topCard = deck.getCards().getFirst();
 
         deck.cut(3);
 
@@ -136,18 +136,18 @@ class DeckTest {
 
     @Test
     public void addOneCardToBottom() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
 
         Card drawnCard = deck.draw();
         deck.add(drawnCard);
-        assertEquals(drawnCard, deck.getCards().get(deck.getCards().size()-1));
+        assertEquals(drawnCard, deck.getCards().getLast());
 
         assertEquals(0, deck.getTopCardIndex());
     }
 
     @Test
     public void addMultipleCardsToBottom() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
 
         List<Card> cardsToAdd = new ArrayList<>();
         cardsToAdd.add(deck.draw());
@@ -158,14 +158,14 @@ class DeckTest {
 
         assertEquals(cardsToAdd.get(0), deck.getCards().get(deck.getCards().size() - 3));
         assertEquals(cardsToAdd.get(1), deck.getCards().get(deck.getCards().size() - 2));
-        assertEquals(cardsToAdd.get(2), deck.getCards().get(deck.getCards().size() - 1));
+        assertEquals(cardsToAdd.get(2), deck.getCards().getLast());
 
         assertEquals(0, deck.getTopCardIndex());
     }
 
     @Test
     public void gc() {
-        Deck deck = Deck.builder().isAceHigh(true).build();
+        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
 
         deck.draw();
         deck.draw();
