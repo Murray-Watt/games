@@ -9,10 +9,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DeckTest {
+public class DeckTest {
 
     @Test
-    void buildDeck() {
+    public void buildDeck() {
         DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
 
         assertNotNull(deck);
