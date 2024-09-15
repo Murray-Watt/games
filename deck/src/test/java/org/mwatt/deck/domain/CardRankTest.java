@@ -5,7 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-
 public class CardRankTest {
 
     @ParameterizedTest
@@ -14,6 +13,7 @@ public class CardRankTest {
             "TWO,  TWO,  false, 0",
             "KING, TWO,  false, 1",
     })
+
     public void compareToHappyPath(CardRank rank1, CardRank rank2, boolean isAceHigh, int expected) {
 
         int result = rank1.compareTo(rank2, isAceHigh);
@@ -31,6 +31,7 @@ public class CardRankTest {
             "TWO, THREE, false, -1",
             "THREE, TWO, false, 1"
     })
+
     public void compareToAceCardRank(CardRank rank1, CardRank rank2, boolean isAceHigh, int expected) {
 
         int result = rank1.compareTo(rank2, isAceHigh);
