@@ -11,7 +11,7 @@ import java.util.List;
 
 @Builder
 @Getter
-public class DeckImpl implements Deck {
+public class DeckImpl implements CardSeq {
     private List<Card> cards;
     private int topCardIndex;
     @Builder.Default
@@ -41,20 +41,49 @@ public class DeckImpl implements Deck {
         return cards;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public String toJson() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Error while serializing Deck to JSON", e);
-        }
+    public int add(Card card) {
+        List<Card> newCards = new ArrayList<>(this.cards);
+        newCards.add(card);
+        this.cards = newCards;
+        gc();
+        return this.cards.size();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void cut(int n) {
-        if (n <= 0 || n > this.cards.size()) {
-            return; // NOOP
+    public int add(List<Card> cards) {
+        List<Card> newCards = new ArrayList<>(this.cards);
+        newCards.addAll(cards);
+        this.cards = newCards;
+        gc();
+
+        return this.cards.size();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void shuffle() {
+        List<Card> shuffledCards = new ArrayList<>(this.cards);
+        Collections.shuffle(shuffledCards);
+        this.cards = shuffledCards;
+        this.topCardIndex = 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean cut(int n) {
+        if (n <= 0 || n >= this.cards.size()) {
+            return false; // NOOP
         }
 
         List<Card> newCards = new ArrayList<>();
@@ -66,8 +95,12 @@ public class DeckImpl implements Deck {
 
         this.cards = newCards;
         this.topCardIndex = 0;
+        return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Card draw() {
         if (topCardIndex >= cards.size()) {
@@ -79,6 +112,9 @@ public class DeckImpl implements Deck {
         return drawnCard;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Card> draw(int n) {
         var cap = Math.min(n, cards.size());
@@ -94,30 +130,6 @@ public class DeckImpl implements Deck {
         return drawnCards;
     }
 
-    @Override
-    public void shuffle() {
-        List<Card> shuffledCards = new ArrayList<>(this.cards);
-        Collections.shuffle(shuffledCards);
-        this.cards = shuffledCards;
-        this.topCardIndex = 0;
-    }
-
-    @Override
-    public void add(Card card) {
-        List<Card> newCards = new ArrayList<>(this.cards);
-        newCards.add(card);
-        this.cards = newCards;
-        gc();
-    }
-
-    @Override
-    public void add(List<Card> cards) {
-        List<Card> newCards = new ArrayList<>(this.cards);
-        newCards.addAll(cards);
-        this.cards = newCards;
-        gc();
-    }
-
     // Package level for testing
     void gc() {
         if (this.cards.isEmpty()) {
@@ -126,5 +138,18 @@ public class DeckImpl implements Deck {
 
         this.cards = new ArrayList<>(this.cards.subList(this.topCardIndex, this.cards.size()));
         this.topCardIndex = 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toJson() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Error while serializing Deck to JSON", e);
+        }
     }
 }

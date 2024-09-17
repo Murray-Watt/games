@@ -16,7 +16,7 @@ class DecksTest {
     @Test
     public void addAndGetDeck() {
         int key = decks.addDeck();
-        Deck deck = decks.getDeck(key);
+        CardSeq deck = decks.getDeck(key);
         assertNotNull(deck);
     }
 
@@ -33,7 +33,7 @@ class DecksTest {
     public void getDecks() {
         decks.addDeck();
         decks.addDeck();
-        assertEquals(2, decks.getDecks().size());
+         assertEquals(2, decks.getDecks().size());
     }
 
     @Test
@@ -41,9 +41,9 @@ class DecksTest {
         int key1 = decks.addDeck();
         int key2 = decks.addDeck();
 
-        Deck deck1 = decks.getDeck(key1);
-        Deck deck2 = decks.getDeck(key2);
-        Deck nonExistentDeck = decks.getDeck(-1);
+        CardSeq deck1 = decks.getDeck(key1);
+        CardSeq deck2 = decks.getDeck(key2);
+        CardSeq nonExistentDeck = decks.getDeck(-1);
 
         assertNotNull(deck1);
         assertNotNull(deck2);
