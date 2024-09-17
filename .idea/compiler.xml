@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="games" />
+        <module name="dealer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
