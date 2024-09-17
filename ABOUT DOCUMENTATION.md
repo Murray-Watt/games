@@ -3,7 +3,7 @@
 What is the correct amount of documentation?
 
 Back when most projects were done in a waterfall fashion, a great deal of time was 
-spent creating and editing documentation. If a project's direction changed or 
+spent creating and editing documentation. If a project's direction changed, or 
 it was canceled due to a lack of progress, a lot of person-hours were lost.
 
 These days, with Agile methodologies, we prioritize working code and create 
@@ -20,6 +20,10 @@ than any one person's opinion.
 This revised version maintains the essence of your message while improving 
 the readability and clarity of the text.
 
+I have a fondness for UML diagrams because they use an expressive and intuitive 
+symbology without imposing rigid formality.
+A diagram should be worth a thousand words, not require a thousand words to explain.
+
 ## All Projects
 - Well-written TDD tests providing coverage for expected code functionality
 - Simple and well-written code
@@ -31,7 +35,7 @@ the readability and clarity of the text.
 - JavaDoc for public classes, all interfaces, and public methods (not covered by an interface)
 
 ## Large Projects and with a Range of Skill Levels
-- UML Structural documentation
+- Structural documentation
 - Comments for any code that junior team members may find confusing
 - "One-page" discussions for non-trivial stories
 
@@ -39,13 +43,16 @@ the readability and clarity of the text.
 - API Specification (endpoints and HTTP methods) with examples
 
 ## Teams Working with Third-Party Developers, Health care, Banking, etc.
-- UML Use Case Diagrams
-- UML Sequence Diagrams 
-- UML Activity Diagrams
+- Use Case Diagrams
+- Sequence Diagrams 
+- Activity Diagrams
 - ERD / Data Dictionary
 
 # Comments
-Dead code, when left in a project, can create confusion. It is better to maintain a changelog or revert to an older version if needed.
+Dead code, when left in a project, can create confusion. It is better to maintain 
+a changelog or revert to an older version if needed.
 
-Comments should not simply reiterate what the code does. Instead, they should provide additional insights, clarify complex logic, or explain the reasoning behind certain decisions.
+Comments should not simply reiterate what the code does. Instead, they should 
+provide additional insights, clarify complex logic, or explain the reasoning 
+behind certain decisions.
  
