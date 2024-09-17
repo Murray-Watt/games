@@ -10,15 +10,16 @@ import java.util.*;
 public class Decks {
     @Getter
     private static final Decks instance = new Decks();
-    private static final Map<Integer, CardSeq<StandardCard>> currentDecks = new HashMap<>();
-    private static Integer nextKey = 1000;
+    private static final Map<Long, CardSeq<StandardCard>> currentDecks = new HashMap<>();
 
-    public int addDeck() {
+    private static Long nextKey = 1000L;
+
+    public Long addDeck() {
         currentDecks.put(nextKey, StandardDeck.builder().build());
         return nextKey++;
     }
 
-    public boolean removeDeck(int key) {
+    public boolean removeDeck(Long key) {
         if (!currentDecks.containsKey(key)) {
             return false;
         }
@@ -27,7 +28,7 @@ public class Decks {
         return true;
     }
 
-    public CardSeq<StandardCard> getDeck(int key) {
+    public CardSeq<StandardCard> getDeck(Long key) {
         if (!currentDecks.containsKey(key)) {
             return null;
         }
@@ -41,6 +42,6 @@ public class Decks {
 
     public void clear() {
         currentDecks.clear();
-        nextKey = 1000;
+        nextKey = 1000L;
     }
 }

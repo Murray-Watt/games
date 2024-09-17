@@ -13,7 +13,7 @@ public class StandardDeckTest {
 
     @Test
     public void buildDeck() {
-        StandardDeck deck = StandardDeck.builder().isAceHigh(true).build();
+        StandardDeck deck = StandardDeckFactory.createDeck(true);
 
         assertNotNull(deck);
         assertTrue(deck.isAceHigh());
@@ -32,7 +32,7 @@ public class StandardDeckTest {
 
     @Test
     public void drawHappyPath() {
-        StandardDeck deck = StandardDeck.builder().isAceHigh(true).build();
+        StandardDeck deck = StandardDeckFactory.createDeck(true);
         assertNotNull(deck);
 
         StandardCard drawnCard = deck.draw();
@@ -41,7 +41,7 @@ public class StandardDeckTest {
 
     @Test
     public void drawEmptyDeck() {
-        StandardDeck deck = StandardDeck.builder().isAceHigh(true).build();
+        StandardDeck deck = StandardDeckFactory.createDeck(true);
         assertNotNull(deck);
 
         while (!deck.getCards().isEmpty()) {
@@ -53,7 +53,7 @@ public class StandardDeckTest {
 
     @Test
     public void drawMultipleCards() {
-        StandardDeck deck = StandardDeck.builder().isAceHigh(true).build();
+        StandardDeck deck = StandardDeckFactory.createDeck(true);
 
         List<StandardCard> drawnCards = deck.draw(3);
         assertEquals(3, drawnCards.size());
@@ -61,7 +61,7 @@ public class StandardDeckTest {
 
     @Test
     public void shuffle() {
-        StandardDeck deck = StandardDeck.builder().isAceHigh(true).build();
+        StandardDeck deck = StandardDeckFactory.createDeck(true);
 
         deck.shuffle();
 
@@ -70,7 +70,7 @@ public class StandardDeckTest {
 
     @Test
     public void drawMoreCardsThanAvailable() {
-        StandardDeck deck = StandardDeck.builder().isAceHigh(true).build();
+        StandardDeck deck = StandardDeckFactory.createDeck(true);
 
         List<StandardCard> drawnCards = deck.draw(54); // 52 cards in a standard deck
 
@@ -80,7 +80,7 @@ public class StandardDeckTest {
     // https://stattrek.com/online-calculator/binomial
     @Test
     public void shuffleChangesCards() {
-        StandardDeck deck = StandardDeck.builder().isAceHigh(true).build();
+        StandardDeck deck = StandardDeckFactory.createDeck(true);
 
         List<StandardCard> topCardsBeforeShuffle = deck.getCards().subList(0, 9);
         deck.shuffle();
@@ -99,7 +99,7 @@ public class StandardDeckTest {
 
     @Test
     public void cut() {
-        StandardDeck deck = StandardDeck.builder().isAceHigh(true).build();
+        StandardDeck deck = StandardDeckFactory.createDeck(true);
         var topCard = deck.getCards().getFirst();
 
         deck.cut(3);
@@ -109,7 +109,7 @@ public class StandardDeckTest {
 
     @Test
     public void addOneCardToBottom() {
-        StandardDeck deck = StandardDeck.builder().isAceHigh(true).build();
+        StandardDeck deck = StandardDeckFactory.createDeck(true);
 
         StandardCard drawnCard = deck.draw();
         deck.add(drawnCard);
@@ -118,7 +118,7 @@ public class StandardDeckTest {
 
     @Test
     public void addMultipleCardsToBottom() {
-        StandardDeck deck = StandardDeck.builder().isAceHigh(true).build();
+        StandardDeck deck = StandardDeckFactory.createDeck(true);
 
         List<StandardCard> cardsToAdd = new ArrayList<>();
         cardsToAdd.add(deck.draw());
@@ -134,7 +134,7 @@ public class StandardDeckTest {
 
     @Test
     public void gc() {
-        StandardDeck deck = StandardDeck.builder().isAceHigh(true).build();
+        StandardDeck deck = StandardDeckFactory.createDeck(true);
 
         deck.draw();
         deck.draw();

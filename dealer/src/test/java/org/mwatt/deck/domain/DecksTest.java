@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DecksTest {
-    private Decks decks = Decks.getInstance();
+    private final Decks decks = Decks.getInstance();
 
     @BeforeEach
     void setUp() {
@@ -15,15 +15,15 @@ class DecksTest {
 
     @Test
     public void addAndGetDeck() {
-        int key = decks.addDeck();
-        CardSeq deck = decks.getDeck(key);
+        Long key = decks.addDeck();
+        CardSeq<StandardCard> deck = decks.getDeck(key);
         assertNotNull(deck);
     }
 
     @Test
     public void removeDeck() {
-        int key1 = decks.addDeck();
-        int key2 = decks.addDeck();
+        Long key1 = decks.addDeck();
+        Long key2 = decks.addDeck();
         assertTrue(decks.removeDeck(key1));
         assertFalse(decks.removeDeck(key1)); // Trying to remove the same key again
         assertTrue(decks.removeDeck(key2));
@@ -38,12 +38,12 @@ class DecksTest {
 
     @Test
     public void getDeck() {
-        int key1 = decks.addDeck();
-        int key2 = decks.addDeck();
+        Long key1 = decks.addDeck();
+        Long key2 = decks.addDeck();
 
-        CardSeq deck1 = decks.getDeck(key1);
-        CardSeq deck2 = decks.getDeck(key2);
-        CardSeq nonExistentDeck = decks.getDeck(-1);
+        CardSeq<StandardCard> deck1 = decks.getDeck(key1);
+        CardSeq<StandardCard> deck2 = decks.getDeck(key2);
+        CardSeq<StandardCard> nonExistentDeck = decks.getDeck(-1L);
 
         assertNotNull(deck1);
         assertNotNull(deck2);
