@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
     <groupId>org.mwatt</groupId>
-    <artifactId>deck</artifactId>
+    <artifactId>dealer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>deck</name>
     <description>deck</description>
