@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CardSeqTest {
+public class CardSeqBaseTest {
 
     @Test
     public void buildDeck() {

@@ -18,7 +18,7 @@ public record StandardCard(StandardCard.CardRank rank, StandardCard.CardSuit sui
           The only significant feature of the class is that ACE can be low or high
      */
     @Getter
-    enum CardRank {
+    public enum CardRank {
         ACE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10), JACK(11), QUEEN(12), KING(13);
 
         private final int value;
@@ -43,7 +43,7 @@ public record StandardCard(StandardCard.CardRank rank, StandardCard.CardSuit sui
       This is a package level class and simple enough that it does not need commenting
     */
     @Getter
-    enum CardSuit {
+    public enum CardSuit {
         CLUBS(1),
         DIAMONDS(2),
         HEARTS(3),

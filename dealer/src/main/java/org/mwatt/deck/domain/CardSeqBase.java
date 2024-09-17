@@ -14,7 +14,7 @@ import java.util.List;
 public class CardSeqBase implements CardSeq {
 
     @Getter
-    enum CardRank {
+    public enum CardRank {
         ACE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10), JACK(11), QUEEN(12), KING(13);
 
         private final int value;
@@ -24,7 +24,7 @@ public class CardSeqBase implements CardSeq {
         }
 
         // Implement a custom compareTo method with isAceHigh flag
-        int compareTo(CardRank otherRank, boolean isAceHigh) {
+        public int compareTo(CardRank otherRank, boolean isAceHigh) {
 
             // Reverse comparison when this is ACE High
             if (isAceHigh && (this == CardRank.ACE || otherRank == CardRank.ACE)) {
@@ -35,28 +35,18 @@ public class CardSeqBase implements CardSeq {
         }
     }
 
-    private List<StandardCard> cards;
-    private int topCardIndex;
+    @Builder.Default
+    private List<StandardCard> cards = fillDeck(true);
+    @Builder.Default
+    private int topCardIndex = 0;
     @Builder.Default
     private boolean isAceHigh = true;
-
-    public CardSeqBase(boolean isAceHigh) {
-        cards = fillDeck(isAceHigh);
-        topCardIndex = 0;
-        this.isAceHigh = isAceHigh;
-    }
-
-    private CardSeqBase(List<StandardCard> cards, int topCardIndex, boolean isAceHigh) {
-        this.cards = fillDeck(true);
-        this.topCardIndex = topCardIndex;
-        this.isAceHigh = isAceHigh;
-    }
 
     static private List<StandardCard> fillDeck(boolean isAceHigh) {
         List<StandardCard> cards = new ArrayList<>();
 
         for (StandardCard.CardSuit suit : StandardCard.CardSuit.values()) {
-            for (CardRank rank : CardRank.values()) {
+            for (StandardCard.CardRank rank : StandardCard.CardRank.values()) {
                 cards.add(new StandardCard(rank, suit, isAceHigh));
             }
         }
