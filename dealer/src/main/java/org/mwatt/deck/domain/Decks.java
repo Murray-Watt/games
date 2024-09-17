@@ -5,6 +5,7 @@ import java.util.*;
 
 /*
  TODO: Limit the number of Decks and rotate key
+ TODO: Rework given changes with CardSeq
  */
 public class Decks {
     @Getter

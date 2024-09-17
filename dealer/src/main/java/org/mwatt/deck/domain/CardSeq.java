@@ -59,9 +59,7 @@ public interface CardSeq {
     int add(List<Card> cards);
 
     /**
-     * Creates a Json string representation of the object.
-     *
-     * @return the JSON String representing the card sequence
+     * TODO: Remove for separations of concerns
      */
     String toJson();
 }
