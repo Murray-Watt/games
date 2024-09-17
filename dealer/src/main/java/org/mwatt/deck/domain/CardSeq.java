@@ -7,7 +7,7 @@ import java.util.List;
  * This is common for different groupings of cards
  * The name applies ordering but does not imply a specific access method
  */
-public interface CardSeq {
+public interface CardSeq<T> {
 
     /**
      * Shuffle randomly reorders the sequence
@@ -31,7 +31,7 @@ public interface CardSeq {
      * @return a card if the sequence is not empty
      *         null if the sequence is empty
      */
-    StandardCard draw();
+    T draw();
 
     /**
      * Draw n cards from the sequence
@@ -40,7 +40,7 @@ public interface CardSeq {
      * @return n cards if there n or more cards of the sequence
      *         all the cards in the sequence is less than size n
      */
-    List<StandardCard> draw(int n);
+    List<T> draw(int n);
 
     /**
      * Append a card to the sequence
@@ -48,7 +48,7 @@ public interface CardSeq {
      * @param card: the card to append
      * @return the new sequence size
      */
-    int add(StandardCard card);
+    int add(T card);
 
     /**
      * Append a card to the sequence
@@ -56,10 +56,13 @@ public interface CardSeq {
      * @param cards: the cards to append
      * @return the new sequence size
      */
-    int add(List<StandardCard> cards);
+    int add(List<T> cards);
+
 
     /**
-     * TODO: Remove for separations of concerns
+     * Remove the card at position n
+     * @param n: The index of the card to remove
+     * @return the new sequence size
      */
-    String toJson();
+    int remove(int n);
 }

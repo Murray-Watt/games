@@ -10,11 +10,11 @@ import java.util.*;
 public class Decks {
     @Getter
     private static final Decks instance = new Decks();
-    private static final Map<Integer, CardSeq> currentDecks = new HashMap<>();
+    private static final Map<Integer, CardSeq<StandardCard>> currentDecks = new HashMap<>();
     private static Integer nextKey = 1000;
 
     public int addDeck() {
-        currentDecks.put(nextKey, CardSeqBase.builder().build());
+        currentDecks.put(nextKey, StandardDeck.builder().build());
         return nextKey++;
     }
 
@@ -27,7 +27,7 @@ public class Decks {
         return true;
     }
 
-    public CardSeq getDeck(int key) {
+    public CardSeq<StandardCard> getDeck(int key) {
         if (!currentDecks.containsKey(key)) {
             return null;
         }
@@ -35,7 +35,7 @@ public class Decks {
         return currentDecks.get(key);
     }
 
-    public Collection<CardSeq> getDecks() {
+    public Collection<CardSeq<StandardCard>> getDecks() {
         return currentDecks.values();
     }
 

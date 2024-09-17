@@ -1,17 +1,13 @@
 package org.mwatt.deck.domain;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Builder;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Builder
 @Getter
-public class CardSeqBase implements CardSeq {
+public class CardSeqBase<T> implements CardSeq<T> {
 
     @Getter
     public enum CardRank {
@@ -34,35 +30,17 @@ public class CardSeqBase implements CardSeq {
             return Integer.compare(this.value, otherRank.getValue());
         }
     }
+    private List<T> cards = new ArrayList<>();
 
-    @Builder.Default
-    private List<StandardCard> cards = fillDeck(true);
-    @Builder.Default
-    private int topCardIndex = 0;
-    @Builder.Default
-    private boolean isAceHigh = true;
-
-    static private List<StandardCard> fillDeck(boolean isAceHigh) {
-        List<StandardCard> cards = new ArrayList<>();
-
-        for (StandardCard.CardSuit suit : StandardCard.CardSuit.values()) {
-            for (StandardCard.CardRank rank : StandardCard.CardRank.values()) {
-                cards.add(new StandardCard(rank, suit, isAceHigh));
-            }
-        }
-
-        return cards;
-    }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public int add(StandardCard card) {
-        List<StandardCard> newCards = new ArrayList<>(this.cards);
+    public int add(T card) {
+        List<T> newCards = new ArrayList<>(this.cards);
         newCards.add(card);
         this.cards = newCards;
-        gc();
         return this.cards.size();
     }
 
@@ -70,12 +48,29 @@ public class CardSeqBase implements CardSeq {
      * {@inheritDoc}
      */
     @Override
-    public int add(List<StandardCard> cards) {
-        List<StandardCard> newCards = new ArrayList<>(this.cards);
+    public int add(List<T> cards) {
+        List<T> newCards = new ArrayList<>(this.cards);
         newCards.addAll(cards);
         this.cards = newCards;
-        gc();
+        return this.cards.size();
+    }
 
+    /**
+     * Removes the card at the specified index from this card sequence.
+     *
+     * @param n the index of the card to be removed
+     * @return the number of cards remaining in the sequence after removal
+     * @throws IndexOutOfBoundsException if the specified index is out of bounds
+     *
+     * Alternatively we can return this.cards.size(); the index is out of bound.
+     */
+    @Override
+    public int remove(int n) {
+        if (n < 0 || n+1 >= this.cards.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        this.cards.remove(n);
         return this.cards.size();
     }
 
@@ -84,10 +79,9 @@ public class CardSeqBase implements CardSeq {
      */
     @Override
     public void shuffle() {
-        List<StandardCard> shuffledCards = new ArrayList<>(this.cards);
+        List<T> shuffledCards = new ArrayList<>(this.cards);
         Collections.shuffle(shuffledCards);
         this.cards = shuffledCards;
-        this.topCardIndex = 0;
     }
 
     /**
@@ -99,15 +93,14 @@ public class CardSeqBase implements CardSeq {
             return false; // NOOP
         }
 
-        List<StandardCard> newCards = new ArrayList<>();
-        List<StandardCard> topCards = cards.subList(0, n);
-        List<StandardCard> bottomCards = cards.subList(n, this.cards.size());
+        List<T> newCards = new ArrayList<>();
+        List<T> topCards = cards.subList(0, n);
+        List<T> bottomCards = cards.subList(n, this.cards.size());
 
         newCards.addAll(bottomCards);
         newCards.addAll(topCards);
 
         this.cards = newCards;
-        this.topCardIndex = 0;
         return true;
     }
 
@@ -115,23 +108,21 @@ public class CardSeqBase implements CardSeq {
      * {@inheritDoc}
      */
     @Override
-    public StandardCard draw() {
-        if (topCardIndex >= cards.size()) {
+    public T draw() {
+        if (cards.isEmpty()) {
             return null;
         }
 
-        StandardCard drawnCard = cards.get(topCardIndex);
-        topCardIndex++;
-        return drawnCard;
+        return cards.removeFirst();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<StandardCard> draw(int n) {
+    public List<T> draw(int n) {
         var cap = Math.min(n, cards.size());
-        List<StandardCard> drawnCards = new ArrayList<>(cap);
+        List<T> drawnCards = new ArrayList<>(cap);
 
         for (int i = 0; i < cap; i++) {
             var nextCard = draw();
@@ -141,28 +132,5 @@ public class CardSeqBase implements CardSeq {
         }
 
         return drawnCards;
-    }
-
-    // Package level for testing
-    void gc() {
-        if (this.cards.isEmpty()) {
-            return;
-        }
-
-        this.cards = new ArrayList<>(this.cards.subList(this.topCardIndex, this.cards.size()));
-        this.topCardIndex = 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toJson() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Error while serializing Deck to JSON", e);
-        }
     }
 }

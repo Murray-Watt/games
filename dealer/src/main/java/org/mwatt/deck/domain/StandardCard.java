@@ -10,7 +10,8 @@ import java.util.Objects;
  * @param suit: Standard values of Club to Spade
  * @param isAceHigh: Boolean flag on whether to treat ACE as a low value or high value
  */
-public record StandardCard(StandardCard.CardRank rank, StandardCard.CardSuit suit, boolean isAceHigh) implements Comparable<StandardCard> {
+public record StandardCard(StandardCard.CardRank rank, StandardCard.CardSuit suit, boolean isAceHigh)
+        implements Comparable<StandardCard> {
 
     /*
           This is a package level class and thus it has no JavaDoc
