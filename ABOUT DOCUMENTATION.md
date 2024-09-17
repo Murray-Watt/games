@@ -1,16 +1,24 @@
-Exceptions can be cited for most of the guidelines sited here.
-Team harmony, incremental improvements, and demonstrating 
-the benefits of best practices are more important than rigid adoption. 
-The exception to this opinion is when practices 
-are mandated by contractual obligations or legal requirements.
+# About Documentation
 
-# Documentation
-This project may prioritize documentation over working code, which could potentially violate the principle of favoring 
-working code over documentation. This principle is not anti-documentation but rather opposes vaporware. One should have 
-sufficient documentation for the project without burdening it with excessive maintenance.
+What is the correct amount of documentation?
 
-This is a list of documentation prioritized (first pass) by need, and does not include project management 
-documentation such as threat modeling and retrospectives.
+Back when most projects were done in a waterfall fashion, a great deal of time was 
+spent creating and editing documentation. If a project's direction changed or 
+it was canceled due to a lack of progress, a lot of person-hours were lost.
+
+These days, with Agile methodologies, we prioritize working code and create 
+just enough documentation to serve the project's needs and facilitate communication, 
+but no more.
+
+Since this project is intended to demonstrate technology and design, 
+it will be documentation-heavy. The following is a rough guide to how much 
+documentation one should create under different circumstances.
+
+Note that team harmony and getting buy-in from the team is more important 
+than any one person's opinion.
+
+This revised version maintains the essence of your message while improving 
+the readability and clarity of the text.
 
 ## All Projects
 - Well-written TDD tests providing coverage for expected code functionality
