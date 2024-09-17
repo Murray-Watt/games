@@ -14,7 +14,7 @@ public class CardRankTest {
             "KING, TWO,  false, 1",
     })
 
-    public void compareToHappyPath(CardRank rank1, CardRank rank2, boolean isAceHigh, int expected) {
+    public void compareToHappyPath(StandardCard.CardRank rank1, StandardCard.CardRank rank2, boolean isAceHigh, int expected) {
 
         int result = rank1.compareTo(rank2, isAceHigh);
         var errorMsg = STR."Expected comparison result \{expected} but was \{result} for ranks \{rank1} and \{rank2} with isAceHigh \{isAceHigh}";
@@ -32,7 +32,7 @@ public class CardRankTest {
             "THREE, TWO, false, 1"
     })
 
-    public void compareToAceCardRank(CardRank rank1, CardRank rank2, boolean isAceHigh, int expected) {
+    public void compareToAceCardRank(StandardCard.CardRank rank1, StandardCard.CardRank rank2, boolean isAceHigh, int expected) {
 
         int result = rank1.compareTo(rank2, isAceHigh);
         var errorMsg = STR."Expected comparison result \{expected} but was \{result} for ranks \{rank1} and \{rank2} with isAceHigh \{isAceHigh}";
@@ -43,13 +43,13 @@ public class CardRankTest {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     public void testCompareToSameRank(boolean isAceHigh) {
-        int result = CardRank.TWO.compareTo(CardRank.TWO, isAceHigh);
+        int result = StandardCard.CardRank.TWO.compareTo(StandardCard.CardRank.TWO, isAceHigh);
         Assertions.assertEquals(0, result);
     }
 
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     public void testCompareToNullRank(boolean isAceHigh) {
-        Assertions.assertThrows(NullPointerException.class, () -> CardRank.TWO.compareTo(null, isAceHigh));
+        Assertions.assertThrows(NullPointerException.class, () -> StandardCard.CardRank.TWO.compareTo(null, isAceHigh));
     }
 }

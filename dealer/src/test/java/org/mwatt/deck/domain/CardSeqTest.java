@@ -55,7 +55,7 @@ public class CardSeqTest {
 
         assertEquals(0, deck.getTopCardIndex());
 
-        Card drawnCard = deck.draw();
+        StandardCard drawnCard = deck.draw();
         assertNotNull(drawnCard);
 
         assertEquals(1, deck.getTopCardIndex());
@@ -77,7 +77,7 @@ public class CardSeqTest {
     public void drawMultipleCards() {
         CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
-        List<Card> drawnCards = deck.draw(3);
+        List<StandardCard> drawnCards = deck.draw(3);
         assertEquals(3, drawnCards.size());
 
         assertEquals(3, deck.getTopCardIndex());
@@ -97,7 +97,7 @@ public class CardSeqTest {
     public void drawMoreCardsThanAvailable() {
         CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
-        List<Card> drawnCards = deck.draw(54); // 52 cards in a standard deck
+        List<StandardCard> drawnCards = deck.draw(54); // 52 cards in a standard deck
 
         assertEquals(52, drawnCards.size());
         assertEquals(52, deck.getTopCardIndex());
@@ -108,10 +108,10 @@ public class CardSeqTest {
     public void shuffleChangesCards() {
         CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
-        List<Card> topCardsBeforeShuffle = deck.getCards().subList(0, 9);
+        List<StandardCard> topCardsBeforeShuffle = deck.getCards().subList(0, 9);
         deck.shuffle();
 
-        List<Card> topCardsAfterShuffle = deck.getCards().subList(0, 9);
+        List<StandardCard> topCardsAfterShuffle = deck.getCards().subList(0, 9);
 
         int movedCardsCount = 0;
         for (int i = 0; i < 9; i++) {
@@ -138,7 +138,7 @@ public class CardSeqTest {
     public void addOneCardToBottom() {
         CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
-        Card drawnCard = deck.draw();
+        StandardCard drawnCard = deck.draw();
         deck.add(drawnCard);
         assertEquals(drawnCard, deck.getCards().getLast());
 
@@ -149,7 +149,7 @@ public class CardSeqTest {
     public void addMultipleCardsToBottom() {
         CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
-        List<Card> cardsToAdd = new ArrayList<>();
+        List<StandardCard> cardsToAdd = new ArrayList<>();
         cardsToAdd.add(deck.draw());
         cardsToAdd.add(deck.draw());
         cardsToAdd.add(deck.draw());

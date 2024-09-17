@@ -31,7 +31,7 @@ public interface CardSeq {
      * @return a card if the sequence is not empty
      *         null if the sequence is empty
      */
-    Card draw();
+    StandardCard draw();
 
     /**
      * Draw n cards from the sequence
@@ -40,7 +40,7 @@ public interface CardSeq {
      * @return n cards if there n or more cards of the sequence
      *         all the cards in the sequence is less than size n
      */
-    List<Card> draw(int n);
+    List<StandardCard> draw(int n);
 
     /**
      * Append a card to the sequence
@@ -48,7 +48,7 @@ public interface CardSeq {
      * @param card: the card to append
      * @return the new sequence size
      */
-    int add(Card card);
+    int add(StandardCard card);
 
     /**
      * Append a card to the sequence
@@ -56,7 +56,7 @@ public interface CardSeq {
      * @param cards: the cards to append
      * @return the new sequence size
      */
-    int add(List<Card> cards);
+    int add(List<StandardCard> cards);
 
     /**
      * TODO: Remove for separations of concerns
