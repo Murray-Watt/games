@@ -11,19 +11,19 @@ import java.util.List;
 
 @Builder
 @Getter
-public class DeckImpl implements CardSeq {
+public class CardSeqBase implements CardSeq {
     private List<Card> cards;
     private int topCardIndex;
     @Builder.Default
     private boolean isAceHigh = true;
 
-    public DeckImpl(boolean isAceHigh) {
+    public CardSeqBase(boolean isAceHigh) {
         cards = fillDeck(isAceHigh);
         topCardIndex = 0;
         this.isAceHigh = isAceHigh;
     }
 
-    private DeckImpl(List<Card> cards, int topCardIndex, boolean isAceHigh) {
+    private CardSeqBase(List<Card> cards, int topCardIndex, boolean isAceHigh) {
         this.cards = fillDeck(true);
         this.topCardIndex = topCardIndex;
         this.isAceHigh = isAceHigh;

@@ -9,11 +9,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DeckTest {
+public class CardSeqTest {
 
     @Test
     public void buildDeck() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
         assertNotNull(deck);
         assertTrue(deck.isAceHigh());
@@ -33,7 +33,7 @@ public class DeckTest {
 
     @Test
     public void toJsonOnInitialDeck() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
         String deckJson;
 
         try {
@@ -50,7 +50,7 @@ public class DeckTest {
 
     @Test
     public void drawHappyPath() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
         assertNotNull(deck);
 
         assertEquals(0, deck.getTopCardIndex());
@@ -63,7 +63,7 @@ public class DeckTest {
 
     @Test
     public void drawEmptyDeck() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
         assertNotNull(deck);
 
         while (deck.getTopCardIndex() < deck.getCards().size()) {
@@ -75,7 +75,7 @@ public class DeckTest {
 
     @Test
     public void drawMultipleCards() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
         List<Card> drawnCards = deck.draw(3);
         assertEquals(3, drawnCards.size());
@@ -85,7 +85,7 @@ public class DeckTest {
 
     @Test
     public void shuffle() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
         deck.shuffle();
 
@@ -95,7 +95,7 @@ public class DeckTest {
 
     @Test
     public void drawMoreCardsThanAvailable() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
         List<Card> drawnCards = deck.draw(54); // 52 cards in a standard deck
 
@@ -106,7 +106,7 @@ public class DeckTest {
     // https://stattrek.com/online-calculator/binomial
     @Test
     public void shuffleChangesCards() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
         List<Card> topCardsBeforeShuffle = deck.getCards().subList(0, 9);
         deck.shuffle();
@@ -125,7 +125,7 @@ public class DeckTest {
 
     @Test
     public void cut() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
         var topCard = deck.getCards().getFirst();
 
         deck.cut(3);
@@ -136,7 +136,7 @@ public class DeckTest {
 
     @Test
     public void addOneCardToBottom() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
         Card drawnCard = deck.draw();
         deck.add(drawnCard);
@@ -147,7 +147,7 @@ public class DeckTest {
 
     @Test
     public void addMultipleCardsToBottom() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
         List<Card> cardsToAdd = new ArrayList<>();
         cardsToAdd.add(deck.draw());
@@ -165,7 +165,7 @@ public class DeckTest {
 
     @Test
     public void gc() {
-        DeckImpl deck = DeckImpl.builder().isAceHigh(true).build();
+        CardSeqBase deck = CardSeqBase.builder().isAceHigh(true).build();
 
         deck.draw();
         deck.draw();

@@ -13,7 +13,7 @@ public class Decks {
     private static Integer nextKey = 1000;
 
     public int addDeck() {
-        currentDecks.put(nextKey,DeckImpl.builder().build());
+        currentDecks.put(nextKey, CardSeqBase.builder().build());
         return nextKey++;
     }
 

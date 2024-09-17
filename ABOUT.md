@@ -22,6 +22,5 @@ Ancillary documents can be found in the parent project
 
 Goal of Deck is to be a Microservice that will act like a dealer for standard card games.
 
-TODO: Rename Module to Dealer
 
 
