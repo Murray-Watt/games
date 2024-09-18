@@ -5,11 +5,15 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+/*
+   An optimization I got from Charter discussion
+   If I make the last card in the ArrayList the top it will be more efficient.
+   This will be more efficient for arrays also.
+ */
 @Getter
 public class CardSeqBase<T> implements CardSeq<T> {
 
-    private List<T> cards = new ArrayList<>();
+    protected List<T> cards = new ArrayList<>();
 
     /**
      * {@inheritDoc}
@@ -52,6 +56,9 @@ public class CardSeqBase<T> implements CardSeq<T> {
         return this.cards.size();
     }
 
+    /*
+        TODO: Check if shuffle collection is sufficiently random.
+     */
     /**
      * {@inheritDoc}
      */

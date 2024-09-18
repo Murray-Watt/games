@@ -10,19 +10,14 @@ import java.util.List;
 @Getter
 public class StandardDeck extends CardSeqBase<StandardCard> {
     @Builder.Default
-    private List<StandardCard> cards = fillDeck(true);
-    @Builder.Default
     private boolean isAceHigh = true;
 
-    private static List<StandardCard> fillDeck(boolean isAceHigh) {
-        List <StandardCard> cards = new ArrayList<StandardCard>();
-
+    // Careful two stage initialization
+    void initializeDeck(boolean isAceHigh) {
         for (StandardCard.CardSuit suit : StandardCard.CardSuit.values()) {
             for (StandardCard.CardRank rank : StandardCard.CardRank.values()) {
-                cards.add(new StandardCard(rank, suit, isAceHigh));
+                this.add(new StandardCard(rank, suit, isAceHigh));
             }
         }
-
-        return cards;
     }
 }

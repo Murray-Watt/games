@@ -30,13 +30,10 @@ public record StandardCard(StandardCard.CardRank rank, StandardCard.CardSuit sui
 
         // Implement a custom compareTo method with isAceHigh flag
         public int compareTo(CardRank otherRank, boolean isAceHigh) {
+            var aceFactor = isAceHigh && (this == CardRank.ACE || otherRank == CardRank.ACE);
 
-            // Reverse comparison when this is ACE High
-            if (isAceHigh && (this == CardRank.ACE || otherRank == CardRank.ACE)) {
-                return Integer.compare(otherRank.getValue(),this.value);
-            }
-
-            return Integer.compare(this.value, otherRank.getValue());
+            // Minor optimization from Charter discussion.
+            return Integer.compare(this.value, otherRank.getValue()) * (aceFactor ? -1 : 1);
         }
     }
 
