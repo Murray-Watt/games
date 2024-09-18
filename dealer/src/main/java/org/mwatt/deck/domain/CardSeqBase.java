@@ -2,27 +2,19 @@ package org.mwatt.deck.domain;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-/*
-   An optimization I got from Charter discussion
-   If I make the last card in the ArrayList the top it will be more efficient.
-   This will be more efficient for arrays also.
- */
+import java.util.*;
+
 @Getter
 public class CardSeqBase<T> implements CardSeq<T> {
 
-    protected List<T> cards = new ArrayList<>();
+    protected List<T> cards = new LinkedList<T>();
 
     /**
      * {@inheritDoc}
      */
     @Override
     public int add(T card) {
-        List<T> newCards = new ArrayList<>(this.cards);
-        newCards.add(card);
-        this.cards = newCards;
+        cards.add(card);
         return this.cards.size();
     }
 
@@ -30,10 +22,8 @@ public class CardSeqBase<T> implements CardSeq<T> {
      * {@inheritDoc}
      */
     @Override
-    public int add(List<T> cards) {
-        List<T> newCards = new ArrayList<>(this.cards);
-        newCards.addAll(cards);
-        this.cards = newCards;
+    public int add(List<T> cardsToAdd) {
+        cards.addAll(cardsToAdd);
         return this.cards.size();
     }
 
@@ -78,7 +68,7 @@ public class CardSeqBase<T> implements CardSeq<T> {
             return false; // NOOP
         }
 
-        List<T> newCards = new ArrayList<>();
+        List<T> newCards = new LinkedList<>();
         List<T> topCards = cards.subList(0, n);
         List<T> bottomCards = cards.subList(n, this.cards.size());
 

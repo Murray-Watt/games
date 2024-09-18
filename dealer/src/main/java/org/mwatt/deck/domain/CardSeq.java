@@ -53,10 +53,10 @@ public interface CardSeq<T> {
     /**
      * Append a card to the sequence
      *
-     * @param cards: the cards to append
+     * @param cardsToAdd: the cards to append
      * @return the new sequence size
      */
-    int add(List<T> cards);
+    int add(List<T> cardsToAdd);
 
 
     /**
