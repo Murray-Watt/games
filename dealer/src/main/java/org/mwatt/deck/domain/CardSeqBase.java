@@ -7,7 +7,7 @@ import java.util.*;
 @Getter
 public class CardSeqBase<T> implements CardSeq<T> {
 
-    protected List<T> cards = new LinkedList<T>();
+    protected List<T> cards = new LinkedList<>();
 
     /**
      * {@inheritDoc}
@@ -37,13 +37,13 @@ public class CardSeqBase<T> implements CardSeq<T> {
      * Alternatively we can return this.cards.size(); the index is out of bound.
      */
     @Override
-    public int remove(int n) {
+    public T pick(int n) {
         if (n < 0 || n+1 >= this.cards.size()) {
             throw new IndexOutOfBoundsException();
         }
 
-        this.cards.remove(n);
-        return this.cards.size();
+        T card = this.cards.remove(n);
+        return card;
     }
 
     /*

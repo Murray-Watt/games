@@ -60,9 +60,9 @@ public interface CardSeq<T> {
 
 
     /**
-     * Remove the card at position n
+     * Pick (and remove) the card at position n
      * @param n: The index of the card to remove
      * @return the new sequence size
      */
-    int remove(int n);
+    T pick(int n);
 }

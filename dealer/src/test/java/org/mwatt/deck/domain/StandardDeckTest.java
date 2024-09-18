@@ -133,13 +133,12 @@ public class StandardDeckTest {
     }
 
     @Test
-    public void gc() {
+    public void pick2NotEqual() {
         StandardDeck deck = StandardDeckFactory.createDeck(true);
 
-        deck.draw();
-        deck.draw();
-        deck.draw();
+        StandardCard card1 = deck.pick(10);
+        StandardCard card2 = deck.pick(10);
 
-        assertEquals(49, deck.getCards().size());
+        assertNotEquals(card1,card2);
     }
 }
