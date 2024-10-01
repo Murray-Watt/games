@@ -16,6 +16,7 @@ import javax.smartcardio.Card;
 public class DeckController {
     Decks decks = Decks.getInstance();
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/deck")
     public ResponseEntity<Long> createDeck() {
         // In a real implementation, this would persist the deck and return the ID
