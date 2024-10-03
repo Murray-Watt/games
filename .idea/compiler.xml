@@ -11,9 +11,7 @@
         <module name="dealer" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="dealer" target="21" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="21" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
