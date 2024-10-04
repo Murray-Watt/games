@@ -9,6 +9,10 @@
     <version>0.5</version>
 
     <properties>
+        <java.version>21</java.version>
+        <encoding>UTF-8</encoding>
+        <recompileMode>all</recompileMode>
+        <log4j.version>3.0.0-beta1</log4j.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

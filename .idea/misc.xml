@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/deck/pom.xml" />
         <option value="$PROJECT_DIR$/dealer/pom.xml" />
         <option value="$PROJECT_DIR$/users/pom.xml" />
+        <option value="$PROJECT_DIR$/user-app/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
