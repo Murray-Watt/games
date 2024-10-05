@@ -1,4 +1,4 @@
-package org.mwatt.deck.api;
+package org.mwatt.dealer.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.Base64;
 import java.util.Base64.Encoder;
 
-@WebMvcTest(DeckController.class)
-public class DeckControllerWebTest {
+@WebMvcTest(DealerController.class)
+public class DealerControllerWebTest {
 
     @Autowired
     private MockMvc mockMvc;

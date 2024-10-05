@@ -1,4 +1,4 @@
-package org.mwatt.deck.domain;
+package org.mwatt.dealer.domain;
 
 import lombok.Builder;
 import lombok.Getter;

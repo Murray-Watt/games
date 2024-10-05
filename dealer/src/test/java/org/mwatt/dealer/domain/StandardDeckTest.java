@@ -1,4 +1,4 @@
-package org.mwatt.deck.domain;
+package org.mwatt.dealer.domain;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,7 +1,7 @@
-package org.mwatt.deck;
+package org.mwatt.dealer;
 
-import org.mwatt.deck.jwt.AuthEntryPointJwt;
-import org.mwatt.deck.jwt.AuthTokenFilter;
+import org.mwatt.dealer.jwt.AuthEntryPointJwt;
+import org.mwatt.dealer.jwt.AuthTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -69,9 +69,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(UserDetailsService userDetailsService) {
-        return args -> {
-            JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
+    public CommandLineRunner commandLineRunner() {
+        return _ -> {
             UserDetails user1 = User.withUsername("user1")
                     .password(passwordEncoder().encode("password1"))
                     .roles("USER")

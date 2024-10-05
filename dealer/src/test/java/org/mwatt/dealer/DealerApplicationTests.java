@@ -1,10 +1,10 @@
-package org.mwatt.deck;
+package org.mwatt.dealer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DeckApplicationTests {
+class DealerApplicationTests {
 
     @Test
     void contextLoads() {

@@ -1,38 +1,27 @@
-package org.mwatt.deck.api;
+package org.mwatt.dealer.api;
 
-import org.mwatt.deck.domain.CardSeq;
-import org.mwatt.deck.domain.Decks;
-import org.mwatt.deck.domain.StandardCard;
-import org.mwatt.deck.domain.StandardDeck;
-import org.mwatt.deck.dto.CardDto;
+import org.mwatt.dealer.domain.CardSeq;
+import org.mwatt.dealer.domain.Decks;
+import org.mwatt.dealer.domain.StandardCard;
+import org.mwatt.dealer.dto.CardDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.smartcardio.Card;
-
 @RestController
-public class DeckController {
+public class DealerController {
     Decks decks = Decks.getInstance();
 
     @PreAuthorize("hasRole('USER')")
-    @GetMapping("/deck")
+    @GetMapping("/dealer")
     public ResponseEntity<Long> createDeck() {
         // In a real implementation, this would persist the deck and return the ID
         var id = decks.addDeck();
         return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
 
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/admin")
-    public String adminDeck() {
-        return "hello Admin";
-    }
-
-
-    @PostMapping("/deck/{id}/draw")
+    @PostMapping("/dealer/{id}/draw")
     public ResponseEntity<CardDto> drawCard(@PathVariable Long id) {
         CardSeq<StandardCard> deck = decks.getDeck(id);
 

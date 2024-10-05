@@ -1,4 +1,4 @@
-package org.mwatt.deck.domain;
+package org.mwatt.dealer.domain;
 
 public class StandardDeckFactory {
     static public StandardDeck createDeck(boolean isAceHigh) {

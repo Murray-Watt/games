@@ -1,12 +1,12 @@
-package org.mwatt.deck;
+package org.mwatt.dealer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DeckApplication {
+public class DealerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DeckApplication.class, args);
+        SpringApplication.run(DealerApplication.class, args);
     }
 }
