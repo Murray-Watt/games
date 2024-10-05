@@ -7,14 +7,22 @@
     <groupId>org.mwatt</groupId>
     <artifactId>games</artifactId>
     <version>0.5</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>security-helper</module>
+        <module>dealer</module>
+        <module>user-app</module>
+    </modules>
 
     <properties>
         <java.version>21</java.version>
+        <jwt.version>0.12.6</jwt.version>
         <encoding>UTF-8</encoding>
         <recompileMode>all</recompileMode>
         <log4j.version>3.0.0-beta1</log4j.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+        <junit.version>5.10.2</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
