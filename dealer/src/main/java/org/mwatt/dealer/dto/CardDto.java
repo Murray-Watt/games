@@ -1,7 +1,7 @@
-package org.mwatt.deck.dto;
+package org.mwatt.dealer.dto;
 
 import lombok.*;
-import org.mwatt.deck.domain.StandardCard;
+import org.mwatt.dealer.domain.StandardCard;
 
 @Getter
 @Setter

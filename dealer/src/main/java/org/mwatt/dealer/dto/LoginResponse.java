@@ -1,4 +1,4 @@
-package org.mwatt.deck.dto;
+package org.mwatt.dealer.dto;
 
 
 import lombok.Data;

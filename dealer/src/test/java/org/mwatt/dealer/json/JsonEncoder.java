@@ -1,4 +1,4 @@
-package org.mwatt.deck.json;
+package org.mwatt.dealer.json;
 
 import org.springframework.core.codec.EncodingException;
 

@@ -1,8 +1,8 @@
-package org.mwatt.deck.api;
+package org.mwatt.dealer.api;
 
-import org.mwatt.deck.dto.LoginRequest;
-import org.mwatt.deck.dto.LoginResponse;
-import org.mwatt.deck.jwt.JwtUtils;
+import org.mwatt.dealer.dto.LoginRequest;
+import org.mwatt.dealer.dto.LoginResponse;
+import org.mwatt.dealer.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

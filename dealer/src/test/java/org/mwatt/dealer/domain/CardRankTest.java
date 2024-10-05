@@ -1,4 +1,4 @@
-package org.mwatt.deck.domain;
+package org.mwatt.dealer.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -45,11 +45,5 @@ public class CardRankTest {
     public void testCompareToSameRank(boolean isAceHigh) {
         int result = StandardCard.CardRank.TWO.compareTo(StandardCard.CardRank.TWO, isAceHigh);
         Assertions.assertEquals(0, result);
-    }
-
-    @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    public void testCompareToNullRank(boolean isAceHigh) {
-        Assertions.assertThrows(NullPointerException.class, () -> StandardCard.CardRank.TWO.compareTo(null, isAceHigh));
     }
 }

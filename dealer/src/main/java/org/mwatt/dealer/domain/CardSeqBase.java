@@ -1,4 +1,4 @@
-package org.mwatt.deck.domain;
+package org.mwatt.dealer.domain;
 
 import lombok.Getter;
 
@@ -42,8 +42,7 @@ public class CardSeqBase<T> implements CardSeq<T> {
             throw new IndexOutOfBoundsException();
         }
 
-        T card = this.cards.remove(n);
-        return card;
+        return this.cards.remove(n);
     }
 
     /*
